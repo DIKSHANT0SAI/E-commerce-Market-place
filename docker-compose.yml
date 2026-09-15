@@ -1,0 +1,19 @@
+# Build & run the app in one command:  docker compose up --build
+# Compose auto-loads the local .env for BOTH the build args (NEXT_PUBLIC_* below, baked
+# in at build time) and the container's runtime env (env_file, server secrets at runtime).
+services:
+  web:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
+        NEXT_PUBLIC_RAZORPAY_KEY_ID: ${NEXT_PUBLIC_RAZORPAY_KEY_ID}
+        NEXT_PUBLIC_GOOGLE_API_KEY: ${NEXT_PUBLIC_GOOGLE_API_KEY}
+        NEXT_PUBLIC_ADMIN_EMAILS: ${NEXT_PUBLIC_ADMIN_EMAILS}
+        NEXT_PUBLIC_CURRENCY: ${NEXT_PUBLIC_CURRENCY:-₹}
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    restart: unless-stopped

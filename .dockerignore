@@ -1,0 +1,25 @@
+# Dependencies & build output (recreated inside the image)
+node_modules
+.next
+out
+
+# Secrets — NEVER bake these into the image
+.env
+.env.*
+!.env.example
+
+# Version control & CI
+.git
+.github
+.gitignore
+
+# Local tooling / editor / OS junk
+.vscode
+.DS_Store
+*.log
+npm-debug.log*
+
+# Tests & docs (not needed at runtime)
+tests
+vitest.config.js
+README.md
